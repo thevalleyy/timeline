@@ -111,11 +111,11 @@ for (let i = 0; i < cardCount; i++) {
     });
 
     // Draw card text
-    const cardText = `${card.time}\n\n${card.event}`;
+    const cardText = `${card.event}`;
     currentPage.drawText(cardText, {
         x: x,
         y: y + mmToPt(config.cardHeightMM) - 20,
-        size: 12,
+        size: 15,
         font: Courier,
         color: rgb(0, 0, 0),
         maxWidth: mmToPt(config.cardWidthMM) - 10,
