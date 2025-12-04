@@ -1,9 +1,22 @@
 {
     "config": {
+        "debug": true,
+        "outputFile": "timeline.pdf",
+        "eventSize": 13,
+        "eventFont": "CourierBold",
+        "attributionSize": 5,
+        "attributionFont": "Courier",
+        "yearSize": 25,
+        "yearFont": "CourierBold",
+        "descriptionSize": 10,
+        "descriptionFont": "Courier",
         "marginMM": 10,
         "gapMM": 5,
-        "cardWidthMM": 45,
-        "cardHeightMM": 70
+        "cardWidthMM": 67,
+        "cardHeightMM": 95,
+        "paddingMM": 5,
+        "paddingTopMM": 3,
+        "paddingBottomMM": 5
     },
     "data": [
         {
@@ -11,18 +24,18 @@
             "year": "1969",
             "description": "Am **20. Juli 1969** setzte die Mondlandefähre Eagle mit Neil Armstrong und Buzz Aldrin auf dem Mond auf. Michael Collins verblieb im Raumschiff Columbia in der Mondumlaufbahn.",
             "image": "moonlanding.jpg",
-            "attribution": "Image by WikiImages from Pixabay (https://pixabay.com/photos/astronaut-moon-landing-apollo-11-60582/)"
+            "attribution": "Image by WikiImages from Pixabay"
         },
         {
             "event": "Erster bemannter Start des Space Shuttles",
             "year": "1981",
             "description": "STS-1 ist die Missionsbezeichnung für den ersten und gleichzeitig bemannten Flug des Space Shuttles. Er erfolgte am **12. April 1981** mit dem Shuttle Columbia.",
             "image": "columbia.jpg",
-            "attribution": "By NASA - https://images.nasa.gov/details/81pc0382http://grin.hq.nasa.gov/ABSTRACTS/GPN-2000-000650.html on the Wayback Machine at the Wayback Machinehttp://grin.hq.nasa.gov/IMAGES/LARGE/GPN-2000-000650.jpg on the Wayback Machine at the Wayback Machine, Public Domain, https://commons.wikimedia.org/w/index.php?curid=199486"
+            "attribution": "NASA, Public domain, via Wikimedia Commons"
         },
         {
             "event": "Erfindung der Rakete",
-            "year": "ca. 1530",
+            "year": "~1530",
             "description": "Die Raketentechniker Conrad Haas und Johann Schmidlap entwickeln das Prinzip der zweistufigen Rakete im **16. Jahrhundert**, um Geschosse auf eine größere Höhe zu befördern.",
             "image": "rocket.png",
             "attribution": "Conrad Rudolf Haas (1509-1576), Public domain, via Wikimedia Commons"
@@ -32,14 +45,14 @@
             "year": "2004",
             "description": "Am **21. Juni 2004** startete das SpaceShipOne mit Pilot Michael Melvill. Mittels Trägerflugzeug und Raketenantrieb konnte es eine Höhe von knapp über 100 Kilometern erreichen.",
             "image": "spaceshipone.jpg",
-            "attribution": "By Photograph by D Ramey Logan, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=31421792"
+            "attribution": "Photograph by D Ramey Logan, CC BY-SA 3.0, via Wikimedia Commons"
         },
         {
             "event": "Erster Start einer Ariane 6",
             "year": "2024",
             "description": "Am **9. Juli 2024** ist die europäische Trägerrakete vom Typ Ariane 6 erstmals in All gestartet. Sie hatte Mikrosatelliten und wissenschaftliche Experimente an Bord.",
             "image": "ariane6.png",
-            "attribution": "ESA - European Space Agency (https://www.esa.int/ESA_Multimedia/Videos/2024/07/Ariane_6_first_launch)"
+            "attribution": "ESA - European Space Agency"
         }
     ]
 }

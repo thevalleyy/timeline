@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/thevalleyy/timeline#readme",
   "dependencies": {
+    "fast-average-color-node": "^3.1.0",
     "pdf-lib": "^1.17.1",
     "prettier": "^3.7.3"
   }
