@@ -1,6 +1,8 @@
+// packages
 import { PDFDocument, PDFFont, StandardFonts, rgb } from "pdf-lib";
-import { getAverageColor } from "fast-average-color-node";
 import fs from "node:fs";
+
+// files
 import json from "./data.json" with { type: "json" };
 
 // Definitions
@@ -10,80 +12,27 @@ const config = json.config;
 const data = json.data;
 const cardCount = data.length;
 
-// oneliners
-const mmToPt = (mm) => mm * 2.834645669;
-const ptToMm = (pt) => pt / 2.834645669;
-
 // functions
-/**
- * Get the average color of an image
- * @param {String} imagePath relative path of an image file
- * @returns {Object} average color object
- */
-async function returnAverageColor(imagePath) {
-    try {
-        const color = await getAverageColor(imagePath);
-        return color;
-    } catch (error) {
-        console.error(`Error getting average color for ${imagePath}:`, error);
-        return null;
-    }
-}
-
-/**
- * Convert hex color to RGB color object
- * @param {String} hex Hex color
- * @returns {Object} RGB color object with values between 0 and 1
- */
-function hexToRgb(hex) {
-    const bigint = parseInt(hex.replace("#", ""), 16);
-    const r = ((bigint >> 16) & 255) / 255;
-    const g = ((bigint >> 8) & 255) / 255;
-    const b = (bigint & 255) / 255;
-
-    return { r, g, b };
-}
-
-/**
- * Test if a line fits within the card width
- * @param {String} line The line to test the width of
- * @param {Number} fontSize The fontsize
- * @param {PDFFont} font The font
- * @returns {Boolean} True if the line fits, false otherwise
- */
-function doesLineFit(line, fontSize, font) {
-    // console.log(line, eventFont.widthOfTextAtSize(line, config.eventSize), mmToPt(config.cardWidthMM - 2 * config.paddingMM));
-    return font.widthOfTextAtSize(line, fontSize) <= mmToPt(config.cardWidthMM - 2 * config.paddingMM);
-}
+import returnAverageColor from "./functions/returnAverageColor.js";
+import hexToRgb from "./functions/hexToRgb.js";
+import doesLineFit from "./functions/doesLineFit.js";
+import mmToPt from "./functions/mmToPt.js";
+import ptToMm from "./functions/ptToMm.js";
 
 // Validate all specified fonts
-let eventFont = null;
-try {
-    eventFont = await pdfDoc.embedFont(StandardFonts[config.eventFont]);
-} catch (error) {
-    throw `The specified event font '${config.eventFont}' is not available. Please choose a valid standard font. \nAvailable fonts: ${Object.keys(StandardFonts).join(", ")}`;
+const fontsToValidate = ["eventFont", "attributionFont", "yearFont", "descriptionFont"];
+const fonts = {};
+
+for (const name of fontsToValidate) {
+    const fontKey = config[name];
+    if (!StandardFonts[fontKey]) {
+        throw `The specified ${name} '${fontKey}' is not available. \nAvailable fonts: ${Object.keys(StandardFonts).join(", ")}`;
+    }
+    fonts[name] = await pdfDoc.embedFont(StandardFonts[fontKey]);
 }
 
-let attributionFont = null;
-try {
-    attributionFont = await pdfDoc.embedFont(StandardFonts[config.attributionFont]);
-} catch (error) {
-    throw `The specified attribution font '${config.attributionFont}' is not available. Please choose a valid standard font. \nAvailable fonts: ${Object.keys(StandardFonts).join(", ")}`;
-}
-
-let yearFont = null;
-try {
-    yearFont = await pdfDoc.embedFont(StandardFonts[config.yearFont]);
-} catch (error) {
-    throw `The specified year font '${config.yearFont}' is not available. Please choose a valid standard font. \nAvailable fonts: ${Object.keys(StandardFonts).join(", ")}`;
-}
-
-let descriptionFont = null;
-try {
-    descriptionFont = await pdfDoc.embedFont(StandardFonts[config.descriptionFont]);
-} catch (error) {
-    throw `The specified description font '${config.descriptionFont}' is not available. Please choose a valid standard font. \nAvailable fonts: ${Object.keys(StandardFonts).join(", ")}`;
-}
+// convenience bindings used later in the file
+const { eventFont, attributionFont, yearFont, descriptionFont } = fonts;
 
 // Add a blank page to the document
 const page = pdfDoc.addPage();
@@ -122,11 +71,13 @@ const heading = "Timeline Generator";
 const headingSize = 20;
 const subheading = "https://github.com/thevalleyy/timeline";
 const subheadingSize = 10;
-const infoText = `* Generated ${config.outputFile} with ${cardCount} cards
-* Cards per row: ${amountHorizontal}
-* Cards per column: ${amountVertical}
-* Total pages: ${totalPages}`;
-const infoFontSize = 15; // TODO: print warnings here
+const infoText = `* generated ${config.outputFile}
+* start time: ${new Date().toLocaleString()}
+* #cards per row: ${amountHorizontal}
+* #cards per column: ${amountVertical}
+* #total pages: ${totalPages}
+* #total cards: ${cardCount}`;
+const infoFontSize = 15;
 
 page.drawText(heading, {
     x: (width - Courier.widthOfTextAtSize(heading, headingSize)) / 2,
@@ -177,14 +128,11 @@ for (let i = 0; i < cardCount; i++) {
     const col = cardIndexOnPage % amountHorizontal;
 
     let currentPage;
-    if (pageIndex === 0) {
-        currentPage = page;
+
+    if (pageIndex >= pdfDoc.getPageCount()) {
+        currentPage = pdfDoc.addPage();
     } else {
-        if (pageIndex >= pdfDoc.getPageCount()) {
-            currentPage = pdfDoc.addPage();
-        } else {
-            currentPage = pdfDoc.getPage(pageIndex);
-        }
+        currentPage = pdfDoc.getPage(pageIndex);
     }
 
     const x = mmToPt(config.marginMM) + col * mmToPt(config.cardWidthMM) * 2 + col * mmToPt(config.gapMM);
