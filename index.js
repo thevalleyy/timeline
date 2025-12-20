@@ -16,6 +16,7 @@ const cardCount = data.length;
 import returnAverageColor from "./functions/returnAverageColor.js";
 import hexToRgb from "./functions/hexToRgb.js";
 import doesLineFit from "./functions/doesLineFit.js";
+import wrapWords from "./functions/wrapWords.js";
 import mmToPt from "./functions/mmToPt.js";
 import ptToMm from "./functions/ptToMm.js";
 
@@ -150,32 +151,7 @@ for (let i = 0; i < cardCount; i++) {
     });
 
     // Draw event text
-    const eventWords = card.event.split(" ");
-    const eventWrapped = [];
-
-    let lineIndex = 0;
-    for (let j = 0; j < eventWords.length; j++) {
-        let word = eventWords[j];
-
-        // determine line to check
-        const lineToCheck = eventWrapped[lineIndex] ? `${eventWrapped[lineIndex]} ${word}` : word;
-
-        if (doesLineFit(lineToCheck, config.eventSize, eventFont)) {
-            // the word fits!
-            eventWrapped[lineIndex] = `${eventWrapped[lineIndex] ? `${eventWrapped[lineIndex]} ` : ""}${word}`;
-        } else {
-            // the word doesnt fit in the current line! test if it would fit in a new, empty line
-            if (doesLineFit(word, config.eventSize, eventFont)) {
-                // yes, it fits into a new line
-                eventWrapped.push(word);
-                lineIndex++;
-            } else {
-                // nope! the word is too long :c
-                throw `The word '${word}' in event text '${card.event}' doesn't fit into a single line. \nConsider lowering config.eventSize. You may also seperate the word with a space to force line wrap.`;
-            }
-        }
-    }
-
+    const eventWrapped = wrapWords(card.event, card.event, config.eventSize, eventFont);
     for (let k = 0; k < eventWrapped.length; k++) {
         currentPage.drawText(eventWrapped[k], {
             x: x + mmToPt(config.cardWidthMM) / 2 - eventFont.widthOfTextAtSize(eventWrapped[k], config.eventSize) / 2,
@@ -186,7 +162,15 @@ for (let i = 0; i < cardCount; i++) {
         });
     }
 
-    // TODO: draw debug rectangle for event text
+    if (config.debug)
+        currentPage.drawRectangle({
+            x: x + mmToPt(config.paddingMM),
+            y: y + mmToPt(config.cardHeightMM) - mmToPt(config.paddingTopMM) - eventWrapped.length * (eventFont.heightAtSize(config.eventSize) + 2.5),
+            width: mmToPt(config.cardWidthMM - 2 * config.paddingMM),
+            height: eventWrapped.length * (eventFont.heightAtSize(config.eventSize) + 2.5),
+            borderColor: rgb(0, 1, 0),
+            borderWidth: 0.5,
+        });
 
     if (imagePath != null) {
         // determine max image height and width.
