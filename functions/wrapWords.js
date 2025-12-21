@@ -3,14 +3,13 @@ import doesLineFit from "./doesLineFit.js";
 
 /**
  * This function breaks text into several lines to ensure it fits into a textbox
- * @param {String} text The text to wrap
+ * @param {Array} words An array with the words of the text to wrap
  * @param {String} origin The json key of the text
  * @param {Number} fontSize The font size
  * @param {PDFFont} fontType The font type
  * @returns An array where every element fits in a line
  */
-export default function wrapWords(text, origin, fontSize, fontType) {
-    const words = text.split(" ");
+export default function wrapWords(words, origin, fontSize, fontType) {
     const wrapped = [];
 
     let lineIndex = 0;

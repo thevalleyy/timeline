@@ -151,7 +151,7 @@ for (let i = 0; i < cardCount; i++) {
     });
 
     // Draw event text
-    const eventWrapped = wrapWords(card.event, card.event, config.eventSize, eventFont);
+    const eventWrapped = wrapWords(card.event.split(" "), card.event, config.eventSize, eventFont);
     for (let k = 0; k < eventWrapped.length; k++) {
         currentPage.drawText(eventWrapped[k], {
             x: x + mmToPt(config.cardWidthMM) / 2 - eventFont.widthOfTextAtSize(eventWrapped[k], config.eventSize) / 2,
@@ -231,31 +231,8 @@ for (let i = 0; i < cardCount; i++) {
         });
 
         // copyright string
-        const atrWords = card.attribution.split(" "); // TODO: wrap from bottom up
-        const atrWrapped = [];
-
-        let lineIndex = 0;
-        for (let j = 0; j < atrWords.length; j++) {
-            let word = atrWords[j];
-
-            // determine line to check
-            const lineToCheck = atrWrapped[lineIndex] ? `${atrWrapped[lineIndex]} ${word}` : word;
-
-            if (doesLineFit(lineToCheck, config.attributionSize, attributionFont)) {
-                // the word fits!
-                atrWrapped[lineIndex] = `${atrWrapped[lineIndex] ? `${atrWrapped[lineIndex]} ` : ""}${word}`;
-            } else {
-                // the word doesnt fit in the current line! test if it would fit in a new, empty line
-                if (doesLineFit(word, config.attributionSize, attributionFont)) {
-                    // yes, it fits into a new line
-                    atrWrapped.push(word);
-                    lineIndex++;
-                } else {
-                    // nope! the word is too long :c
-                    throw `The word '${word}' in attribution text '${card.attribution}' doesn't fit into a single line. \nConsider lowering config.attributionSize. You may also seperate the word with a space to force line wrap.`;
-                }
-            }
-        }
+        const atrWords = card.attribution.split(" ").reverse();
+        const atrWrapped = wrapWords(atrWords, card.event, config.attributionSize, attributionFont);
 
         // is there enough space for attribution?
         if (attributionFont.heightAtSize(config.attributionSize) * atrWrapped.length > maxImageHeight) {
@@ -263,7 +240,12 @@ for (let i = 0; i < cardCount; i++) {
         }
 
         for (let k = 0; k < atrWrapped.length; k++) {
-            currentPage.drawText(atrWrapped[k], {
+            // get the current entry -> from bottom up, since we reversed the array
+            const currentText = atrWrapped[atrWrapped.length - k - 1];
+            // now reverse the text, since it was also reversed as a side product
+            const atrLine = currentText.split(" ").reverse().join(" ");
+
+            currentPage.drawText(atrLine, {
                 x: x + mmToPt(config.paddingMM),
                 y: y + mmToPt(config.paddingBottomMM) + (atrWrapped.length - k - 1) * (attributionFont.heightAtSize(config.attributionSize) + 1) + 2,
                 size: config.attributionSize,
