@@ -163,7 +163,7 @@ for (let i = 0; i < cardCount; i++) {
     for (let k = 0; k < eventWrapped.length; k++) {
         currentPage.drawText(eventWrapped[k], {
             x: x + mmToPt(config.cardWidthMM) / 2 - eventFont.widthOfTextAtSize(eventWrapped[k], config.eventSize) / 2,
-            y: y + mmToPt(config.cardHeightMM) - mmToPt(config.paddingTopMM) - (k + 1) * (eventFont.heightAtSize(config.eventSize) + 2.5),
+            y: y + mmToPt(config.cardHeightMM) - mmToPt(config.paddingTopMM) - (k + 1) * (eventFont.heightAtSize(config.eventSize) + (k > 0 ? 2.5 : 0)),
             size: config.eventSize,
             font: eventFont,
             color: averageColor.isDark ? rgb(1, 1, 1) : rgb(0, 0, 0),
@@ -347,7 +347,7 @@ for (let i = 0; i < cardCount; i++) {
 
             currentPage.drawText(group[0], {
                 x: x + mmToPt(config.cardWidthMM) + mmToPt(config.paddingMM) + descFontStyle.widthOfTextAtSize(printedLine, config.descriptionSize),
-                y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - (j + 1) * (descFontStyle.heightAtSize(config.descriptionSize) * 1.3),
+                y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - (j + 1) * (descFontStyle.heightAtSize(config.descriptionSize) * 1.4) + 1.4,
                 size: config.descriptionSize,
                 font: descFontStyle,
                 maxWidth: maxDescWidth,
@@ -358,6 +358,9 @@ for (let i = 0; i < cardCount; i++) {
             printedLine.trim();
         });
     }
+
+    // center description vertically
+    // print category on bottom
 }
 
 // serialize the PDFDocument to bytes (a Uint8Array)

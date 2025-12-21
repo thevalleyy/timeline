@@ -1,6 +1,6 @@
 {
     "config": {
-        "debug": true,
+        "debug": false,
         "outputFile": "timeline.pdf",
         "eventSize": 13,
         "eventFont": "CourierBold",
