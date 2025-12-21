@@ -21,7 +21,15 @@ import mmToPt from "./functions/mmToPt.js";
 import ptToMm from "./functions/ptToMm.js";
 
 // validate all specified fonts
-const fontsToValidate = ["eventFont", "attributionFont", "yearFont", "descriptionFont"];
+const fontsToValidate = [
+    "eventFont",
+    "attributionFont",
+    "yearFont",
+    "descriptionFont",
+    "descriptionFontBold",
+    "descriptionFontItalic",
+    "descriptionFontBoldItalic",
+];
 const fonts = {};
 
 for (const name of fontsToValidate) {
@@ -33,7 +41,7 @@ for (const name of fontsToValidate) {
 }
 
 // convenience bindings used later in the file
-const { eventFont, attributionFont, yearFont, descriptionFont } = fonts;
+const { eventFont, attributionFont, yearFont, descriptionFont, descriptionFontBold, descriptionFontItalic, descriptionFontBoldItalic } = fonts;
 
 // add a blank page to the document
 const page = pdfDoc.addPage();
@@ -312,33 +320,34 @@ for (let i = 0; i < cardCount; i++) {
     const descWrapped = wrapWords(card.description.split(" "), card.event, config.descriptionSize, descriptionFont);
 
     // normally, we would draw the text one line at a time at this point.
-    // we cannot do that here since the description text supports **bold**,
-    // __italic__ and ~~strikethrough~~ markdown-like syntax.
+    // we cannot do that here since the description text supports **bold**
+    // and __italic__ markdown-like syntax, but pdf-lib lacks a function
+    // that can draw this as a line (pdf-lib lacks many basic functions,
+    // which gets really annoying when you want to do more than basic stuff).
     // this means that every line has to be checked for these tokens.
     // after the formatLines function, a line element will consist of
-    // n sub arrays (where n is the number of words), containing the word itself
-    // and it's formatting options: {b: <boolean, i: <boolean, s: <boolean>}.
+    // some sub arrays, containing groups of words with the same style
+    // and their style options: {b: <boolean, i: <boolean}.
 
     const descFormatted = formatLines(descWrapped);
-    console.log(descFormatted);
 
-    descFormatted.forEach((line) => {
+    for (let j = 0; j < descFormatted.length; j++) {
         let printedLine = "";
-        let currentConfig = {};
 
-        line.forEach((word) => {});
-        // line element consists of word arrays
-    });
+        descFormatted[j].forEach((group) => {
+            console.log(group);
+        });
+    }
 
-    currentPage.drawText(card.description, {
-        x: x + mmToPt(config.cardWidthMM) + mmToPt(config.paddingMM),
-        y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - descriptionFont.heightAtSize(config.descriptionSize),
-        size: config.descriptionSize,
-        font: descriptionFont,
-        lineHeight: descriptionFont.heightAtSize(config.descriptionSize) + 2,
-        maxWidth: maxDescWidth,
-        color: rgb(hexToRgb(config.descriptionColor)["r"], hexToRgb(config.descriptionColor)["g"], hexToRgb(config.descriptionColor)["b"]),
-    });
+    // currentPage.drawText(card.description, {
+    //     x: x + mmToPt(config.cardWidthMM) + mmToPt(config.paddingMM),
+    //     y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - descriptionFont.heightAtSize(config.descriptionSize),
+    //     size: config.descriptionSize,
+    //     font: descriptionFont,
+    //     lineHeight: descriptionFont.heightAtSize(config.descriptionSize) + 2,
+    //     maxWidth: maxDescWidth,
+    //     color: rgb(hexToRgb(config.descriptionColor)["r"], hexToRgb(config.descriptionColor)["g"], hexToRgb(config.descriptionColor)["b"]),
+    // });
 }
 
 // serialize the PDFDocument to bytes (a Uint8Array)
