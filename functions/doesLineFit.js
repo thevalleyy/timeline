@@ -11,5 +11,8 @@ const { config } = json;
  */
 export default function doesLineFit(line, fontSize, font) {
     // console.log(line, eventFont.widthOfTextAtSize(line, config.eventSize), mmToPt(config.cardWidthMM - 2 * config.paddingMM));
-    return font.widthOfTextAtSize(line, fontSize) <= mmToPt(config.cardWidthMM - 2 * config.paddingMM);
+    return (
+        font.widthOfTextAtSize(line.replaceAll("**", "").replaceAll("__", "").replaceAll("~~", ""), fontSize) <=
+        mmToPt(config.cardWidthMM - 2 * config.paddingMM)
+    );
 }

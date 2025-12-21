@@ -1,26 +1,26 @@
 {
-  "name": "timeline",
-  "version": "1.0.0",
-  "description": "dynamically generate cards in the style of the game [timeline](https://www.dobblegame.com/en/games/timeline-classic/).",
-  "main": "index.js",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/thevalleyy/timeline.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/thevalleyy/timeline/issues"
-  },
-  "homepage": "https://github.com/thevalleyy/timeline#readme",
-  "dependencies": {
-    "fast-average-color-node": "^3.1.0",
-    "pdf-lib": "^1.17.1",
-    "prettier": "^3.7.3"
-  }
+    "name": "timeline",
+    "version": "1.0.0",
+    "description": "dynamically generate cards in the style of the game [timeline](https://www.dobblegame.com/en/games/timeline-classic/).",
+    "main": "index.js",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/thevalleyy/timeline.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/thevalleyy/timeline/issues"
+    },
+    "homepage": "https://github.com/thevalleyy/timeline#readme",
+    "dependencies": {
+        "fast-average-color-node": "^3.1.0",
+        "pdf-lib": "^1.17.1",
+        "prettier": "^3.7.3"
+    }
 }

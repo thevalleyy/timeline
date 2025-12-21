@@ -5,7 +5,7 @@ import fs from "node:fs";
 // files
 import json from "./data.json" with { type: "json" };
 
-// Definitions
+// definitions
 const pdfDoc = await PDFDocument.create();
 const Courier = await pdfDoc.embedFont(StandardFonts.Courier);
 const config = json.config;
@@ -15,12 +15,12 @@ const cardCount = data.length;
 // functions
 import returnAverageColor from "./functions/returnAverageColor.js";
 import hexToRgb from "./functions/hexToRgb.js";
-import doesLineFit from "./functions/doesLineFit.js";
 import wrapWords from "./functions/wrapWords.js";
+import formatLines from "./functions/formatLines.js";
 import mmToPt from "./functions/mmToPt.js";
 import ptToMm from "./functions/ptToMm.js";
 
-// Validate all specified fonts
+// validate all specified fonts
 const fontsToValidate = ["eventFont", "attributionFont", "yearFont", "descriptionFont"];
 const fonts = {};
 
@@ -35,7 +35,7 @@ for (const name of fontsToValidate) {
 // convenience bindings used later in the file
 const { eventFont, attributionFont, yearFont, descriptionFont } = fonts;
 
-// Add a blank page to the document
+// add a blank page to the document
 const page = pdfDoc.addPage();
 const { width, height } = page.getSize();
 
@@ -67,7 +67,7 @@ while (true) {
 const pageCapacity = amountHorizontal * amountVertical;
 const totalPages = Math.ceil(cardCount / pageCapacity);
 
-// Draw a string of text toward the top of the page
+// draw a string of text toward the top of the page
 const heading = "Timeline Generator";
 const headingSize = 20;
 const subheading = "https://github.com/thevalleyy/timeline";
@@ -139,7 +139,7 @@ for (let i = 0; i < cardCount; i++) {
     const x = mmToPt(config.marginMM) + col * mmToPt(config.cardWidthMM) * 2 + col * mmToPt(config.gapMM);
     const y = height - mmToPt(config.marginMM) - (row + 1) * mmToPt(config.cardHeightMM) - row * mmToPt(config.gapMM);
 
-    // Draw card border (front)
+    // draw card border (front)
     currentPage.drawRectangle({
         x: x,
         y: y,
@@ -150,7 +150,7 @@ for (let i = 0; i < cardCount; i++) {
         borderWidth: 1,
     });
 
-    // Draw event text
+    // draw event text
     const eventWrapped = wrapWords(card.event.split(" "), card.event, config.eventSize, eventFont);
     for (let k = 0; k < eventWrapped.length; k++) {
         currentPage.drawText(eventWrapped[k], {
@@ -271,7 +271,7 @@ for (let i = 0; i < cardCount; i++) {
         y: y + mmToPt(config.cardHeightMM) - mmToPt(config.paddingTopMM) - yearFont.heightAtSize(config.yearSize),
         size: config.yearSize,
         font: yearFont,
-        color: averageColor.isDark ? rgb(0, 0, 0) : rgb(0, 0, 0), // TODO: color choice
+        color: rgb(hexToRgb(config.yearColor)["r"], hexToRgb(config.yearColor)["g"], hexToRgb(config.yearColor)["b"]),
     });
 
     if (config.debug)
@@ -308,7 +308,28 @@ for (let i = 0; i < cardCount; i++) {
             borderWidth: 0.5,
         });
 
-    // Draw description text
+    // draw description text
+    const descWrapped = wrapWords(card.description.split(" "), card.event, config.descriptionSize, descriptionFont);
+
+    // normally, we would draw the text one line at a time at this point.
+    // we cannot do that here since the description text supports **bold**,
+    // __italic__ and ~~strikethrough~~ markdown-like syntax.
+    // this means that every line has to be checked for these tokens.
+    // after the formatLines function, a line element will consist of
+    // n sub arrays (where n is the number of words), containing the word itself
+    // and it's formatting options: {b: <boolean, i: <boolean, s: <boolean>}.
+
+    const descFormatted = formatLines(descWrapped);
+    console.log(descFormatted);
+
+    descFormatted.forEach((line) => {
+        let printedLine = "";
+        let currentConfig = {};
+
+        line.forEach((word) => {});
+        // line element consists of word arrays
+    });
+
     currentPage.drawText(card.description, {
         x: x + mmToPt(config.cardWidthMM) + mmToPt(config.paddingMM),
         y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - descriptionFont.heightAtSize(config.descriptionSize),
@@ -316,12 +337,12 @@ for (let i = 0; i < cardCount; i++) {
         font: descriptionFont,
         lineHeight: descriptionFont.heightAtSize(config.descriptionSize) + 2,
         maxWidth: maxDescWidth,
-        color: averageColor.isDark ? rgb(0, 0, 0) : rgb(0, 0, 0), // TODO: color choice
+        color: rgb(hexToRgb(config.descriptionColor)["r"], hexToRgb(config.descriptionColor)["g"], hexToRgb(config.descriptionColor)["b"]),
     });
 }
 
-// Serialize the PDFDocument to bytes (a Uint8Array)
+// serialize the PDFDocument to bytes (a Uint8Array)
 const pdfBytes = await pdfDoc.save();
 
-// Write the PDF to a file
+// write the PDF to a file
 fs.writeFileSync(config.outputFile, pdfBytes);
