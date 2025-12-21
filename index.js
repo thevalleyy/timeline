@@ -335,19 +335,29 @@ for (let i = 0; i < cardCount; i++) {
         let printedLine = "";
 
         descFormatted[j].forEach((group) => {
-            console.log(group);
+            let descFontStyle;
+            if (group[1].b) {
+                if (group[1].i) descFontStyle = descriptionFontBoldItalic;
+                else descFontStyle = descriptionFontBold;
+            } else if (group[1].i) {
+                descFontStyle = descriptionFontItalic;
+            } else {
+                descFontStyle = descriptionFont;
+            }
+
+            currentPage.drawText(group[0], {
+                x: x + mmToPt(config.cardWidthMM) + mmToPt(config.paddingMM) + descFontStyle.widthOfTextAtSize(printedLine, config.descriptionSize),
+                y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - (j + 1) * (descFontStyle.heightAtSize(config.descriptionSize) * 1.3),
+                size: config.descriptionSize,
+                font: descFontStyle,
+                maxWidth: maxDescWidth,
+                color: rgb(hexToRgb(config.descriptionColor)["r"], hexToRgb(config.descriptionColor)["g"], hexToRgb(config.descriptionColor)["b"]),
+            });
+
+            printedLine += ` ${group[0]}`;
+            printedLine.trim();
         });
     }
-
-    // currentPage.drawText(card.description, {
-    //     x: x + mmToPt(config.cardWidthMM) + mmToPt(config.paddingMM),
-    //     y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - descriptionFont.heightAtSize(config.descriptionSize),
-    //     size: config.descriptionSize,
-    //     font: descriptionFont,
-    //     lineHeight: descriptionFont.heightAtSize(config.descriptionSize) + 2,
-    //     maxWidth: maxDescWidth,
-    //     color: rgb(hexToRgb(config.descriptionColor)["r"], hexToRgb(config.descriptionColor)["g"], hexToRgb(config.descriptionColor)["b"]),
-    // });
 }
 
 // serialize the PDFDocument to bytes (a Uint8Array)
