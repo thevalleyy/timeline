@@ -15,6 +15,8 @@
         "descriptionFontItalic": "CourierOblique",
         "descriptionFontBoldItalic": "CourierBoldOblique",
         "descriptionColor": "#000000",
+        "categoryFont": "CourierBold",
+        "categorySize": 10,
         "marginMM": 10,
         "gapMM": 5,
         "cardWidthMM": 67,
@@ -23,41 +25,192 @@
         "paddingTopMM": 3,
         "paddingBottomMM": 5
     },
+    "categories": {
+        "0": {
+            "name": "Raumfahrt",
+            "color": "#FF5555"
+        },
+        "1": {
+            "name": "Sonden",
+            "color": "#8BE9FD"
+        },
+        "2": {
+            "name": "Teleskope",
+            "color": "#BD93F9"
+        },
+        "3": {
+            "name": "Sonnensystem",
+            "color": "#F1FA8C"
+        }
+    },
     "data": [
         {
             "event": "Die Mondlandung",
             "year": "1969",
             "description": "Am **20. Juli 1969** setzte die Mondlandefähre Eagle mit Neil Armstrong und Buzz Aldrin auf dem Mond auf. Michael Collins verblieb im Raumschiff Columbia in der Mondumlaufbahn.",
             "image": "moonlanding.jpg",
-            "attribution": "Image by WikiImages from Pixabay"
+            "attribution": "Image by WikiImages from Pixabay",
+            "category": "0"
         },
         {
             "event": "Erster bemannter Start des Space Shuttles",
             "year": "1981",
             "description": "STS-1 ist die Missionsbezeichnung für den ersten und gleichzeitig bemannten Flug des Space Shuttles. Er erfolgte am **12. April 1981** mit dem Shuttle Columbia.",
             "image": "columbia.jpg",
-            "attribution": "NASA, Public domain, via Wikimedia Commons"
+            "attribution": "NASA, Public domain, via Wikimedia Commons",
+            "category": "0"
         },
         {
             "event": "Erfindung der Rakete",
             "year": "~1530",
             "description": "Die Raketentechniker Conrad Haas und Johann Schmidlap entwickeln das Prinzip der zweistufigen Rakete im **16. Jahrhundert**, um Geschosse auf eine größere Höhe zu befördern.",
             "image": "rocket.png",
-            "attribution": "Conrad Rudolf Haas (1509-1576), Public domain, via Wikimedia Commons"
+            "attribution": "Conrad Rudolf Haas (1509-1576), Public domain, via Wikimedia Commons",
+            "category": "0"
         },
         {
             "event": "Erstes privates bemanntes Raumfahrzeug im All",
             "year": "2004",
             "description": "Am **21. Juni 2004** startete das SpaceShipOne mit Pilot Michael Melvill. Mittels Trägerflugzeug und Raketenantrieb konnte es eine Höhe von knapp über 100 Kilometern erreichen.",
             "image": "spaceshipone.jpg",
-            "attribution": "Photograph by D Ramey Logan, CC BY-SA 3.0, via Wikimedia Commons"
+            "attribution": "Photograph by D Ramey Logan, CC BY-SA 3.0, via Wikimedia Commons",
+            "category": "0"
         },
         {
             "event": "Erster Start einer Ariane 6",
             "year": "2024",
             "description": "Am **9. Juli 2024** ist die europäische Trägerrakete vom Typ Ariane 6 erstmals in All gestartet. Sie hatte Mikrosatelliten und wissenschaftliche Experimente an Bord.",
             "image": "ariane6.png",
-            "attribution": "ESA - European Space Agency"
+            "attribution": "ESA - European Space Agency",
+            "category": "0"
+        },
+        {
+            "event": "Erster Mensch im All",
+            "year": "1961",
+            "description": "Wostock 1 startete am **12. April 1961**. Der sowjetische Kosmonaut Juri Gagarin gelangte als erster Mensch über die internationale anerkannte Grenzhöhe von 100 Kilometern.",
+            "image": "gagarin.jpg",
+            "attribution": "Mil.ru, CC BY 4.0, via Wikimedia Commons",
+            "category": "0"
+        },
+        {
+            "event": "Erster künstlicher Erdsatellit im All",
+            "year": "1957",
+            "description": "Sputnik 1 (russisch für __Weggefährte__) war der erste künstliche Erdsatellit, gestartet am **4. Oktober 1957**. Er verglühte 92 Tage nach dem Start in der Erdatmosphäre.",
+            "image": "sputnik.jpg",
+            "attribution": "NSSDC, NASA[1], Public domain, via Wikimedia Commons",
+            "category": "0"
+        },
+        {
+            "event": "Start der ISS",
+            "year": "1998",
+            "description": "Zunächst als militärische Station von den USA geplant, wird die ISS seit Beginn ihres Aufbaus am **20. November 1998** in internationaler Kooperation von 16 Staaten, inklusive Deutschland, betrieben und weiterentwickelt.",
+            "image": "iss.jpg",
+            "attribution": "NASA, Public domain, via Wikimedia Commons",
+            "category": "0"
+        },
+        {
+            "event": "Erster Deutscher im All",
+            "year": "1978",
+            "description": "Über das Interkosmos- Programm der Sowjetunion flog der Ostdeutsche Sigmund Jähn am **26. August 1978** zur Raumstation Saljut 6. Der ausgebildete Jagdflieger verbrachte knapp acht Tage im All.",
+            "image": "jaehn.jpg",
+            "attribution": "Bundesarchiv, Bild 183-T0709-148 / Peter Koard / CC-BY-SA, CC BY-SA 3.0 DE, via Wikimedia Commons",
+            "category": "0"
+        },
+        {
+            "event": "Erste erfolgreiche Wiederlandung einer Falcon-9",
+            "year": "2015",
+            "description": "Am **22. Dezember 2015** gelang es dem US-amerikanischen Raumfahrtunternehmen SpaceX zum ersten Mal, eine Raketenstufe der Falcon-9-Trägerrakete wieder auf der Erde zu landen, ohne eine Explosion zu verursachen.",
+            "image": "falcon.jpg",
+            "attribution": "SpaceX Photos, CC0, via Wikimedia Commons",
+            "category": "0"
+        },
+        {
+            "event": "DART zerschellt auf Dimorphos (Asteroiden- begleiter)",
+            "year": "2022",
+            "description": "DART war eine Mission von NASA und ESA. Die gleichnamige Sonde flog zu dem Asteroiden Didymos und schlug am **26. September 2022** auf dessen Begleiter Dimorphos ein. Später wird die Mission vor Ort durch die europäische Sonde Hera ausgewertet.",
+            "image": "dart.png",
+            "attribution": "NASA/Johns Hopkins APL, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "New Horizons erreicht Pluto",
+            "year": "2015",
+            "description": "Die NASA-Raumsonde New Horizons (englisch für __Neue Horizonte__) startete 2006, um den Kuipergürtel und das Pluto-System zu erforschen. Am **14. Juli 2015** erreichte sie ihn als erste Sonde überhaupt.",
+            "image": "horizons.jpg",
+            "attribution": "Johns Hopkins University Applied Physics Laboratory/Southwest Research Institute, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Voyager 1 wird gestartet",
+            "year": "1977",
+            "description": "Voyager 1 (englisch für __Reisender__) ist eine NASA-Sonde zur Erforschung des fernen Alls. Sie wurde am **5. September 1977** gestartet und ist derzeit das am weitesten entfernte menschengemachte Objekt.",
+            "image": "voyager.jpg",
+            "attribution": "NASA/JPL, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Perseverance landet auf dem Mars",
+            "year": "2021",
+            "description": "Der Marsrover Perseverance (englisch für __Ausdauer__) wurde am 30. Juli 2020 mittels einer Atlas-V-Rakete auf den Weg zum Mars geschickt. Am **18. Februar 2021** landete die Sonde erfolgreich.",
+            "image": "perseverance.jpg",
+            "attribution": "NASA, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Huygens landet auf Titan (Saturnmond)",
+            "year": "2005",
+            "description": "Cassini-Huygens war eine NASA-Mission zur Erforschung des Saturns und seiner Monde. Die gekoppelten Sonden starteten 1997. Im Dezember 2004 trennte sich Huygens von Cassini und am **14. Januar 2005** landete Huygens schlussendlich auf Titan.",
+            "image": "huygens.jpg",
+            "attribution": "ESA/NASA/JPL/University of Arizona; processed by Andrey Pivovarov, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Pale Blue Dot wird aufgenommen",
+            "year": "1990",
+            "description": "Pale Blue Dot (englisch für __blassblauer Punkt__) ist ein Foto der Erde, aufgenommen von Voyager 1 aus etwa 6 Milliarden Kilometern Entfernung (40,5 AE). Es entstand auf Anregung des Astronomen Carl Sagan am **14. Februar 1990**.",
+            "image": "pbd.png",
+            "attribution": "Voyager 1, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Galileo erreicht Jupiter",
+            "year": "1995",
+            "description": "Die NASA-Sonde Galileo wurde 1989 gestartet, um Jupiter und insbesondere seine Galileischen Monde zu erforschen. Galileo konnte am **7. Dezember 1995** in einen Jupiter-Orbit eintreten.",
+            "image": "galileo.jpg",
+            "attribution": "NASA, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Vega 1 setzt auf der Venus auf",
+            "year": "1985",
+            "description": "Vega war eine sowjetische Mission zur Venus. Vega 1 startete am 15. Dezember 1984 und erreichte die Venusoberfläche am 11. Juni 1985, von der sie 56 Minuten lang Daten sendete.",
+            "image": "vega.jpg",
+            "attribution": "Daderot, Public domain, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "JUICE erreicht den Jupiter-Orbit",
+            "year": "2031",
+            "description": "JUICE (Jupiter Icy Moons Explorer) ist eine 2023 von der ESA gestartete Jupitersonde zur Erforschung der Galileischen Monde Europa, Ganymed und Kallisto. Den Jupiterorbit soll sie im **Juli 2031** erreichen.",
+            "image": "juice.png",
+            "attribution": "ESA, CC BY-SA IGO 3.0, CC BY-SA 3.0 IGO, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Hera erreicht Dimorphos (Asteroiden- begleiter)",
+            "year": "2026",
+            "description": "Hera ist eine 2024 gestartete ESA-Mission zum Doppelasteroiden Didymos/Dimorphos, wo zuvor die NASA-Sonde DART einschlug. Ab **Dezember 2026** analysiert Hera dort die DART-Mission.",
+            "image": "hera.jpg",
+            "attribution": "ESA – Science Office, CC BY-SA IGO 3.0, CC BY-SA 3.0 IGO, via Wikimedia Commons",
+            "category": "1"
+        },
+        {
+            "event": "Das Extremely Large Telescope (ELT) wird fertiggestellt",
+            "year": "2029",
+            "description": "Das ELT wird derzeit in der chilenischen Atacamawüste gebaut. Bei geplanter Fertigstellung **2029** wird es das größte optische Teleskop weltweit sein (Stand 1/2026).",
+            "image": "elt.jpg",
+            "attribution": "ESO/G. Vecchia, CC BY 4.0, via Wikimedia Commons",
+            "category": "2"
         }
     ]
 }

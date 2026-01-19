@@ -19,6 +19,7 @@ import wrapWords from "./functions/wrapWords.js";
 import formatLines from "./functions/formatLines.js";
 import mmToPt from "./functions/mmToPt.js";
 import ptToMm from "./functions/ptToMm.js";
+import isDarkColor from "./functions/isDarkColor.js";
 
 // validate all specified fonts
 const fontsToValidate = [
@@ -29,6 +30,7 @@ const fontsToValidate = [
     "descriptionFontBold",
     "descriptionFontItalic",
     "descriptionFontBoldItalic",
+    "categoryFont",
 ];
 const fonts = {};
 
@@ -41,7 +43,7 @@ for (const name of fontsToValidate) {
 }
 
 // convenience bindings used later in the file
-const { eventFont, attributionFont, yearFont, descriptionFont, descriptionFontBold, descriptionFontItalic, descriptionFontBoldItalic } = fonts;
+const { eventFont, attributionFont, yearFont, descriptionFont, descriptionFontBold, descriptionFontItalic, descriptionFontBoldItalic, categoryFont } = fonts;
 
 // add a blank page to the document
 const page = pdfDoc.addPage();
@@ -347,7 +349,13 @@ for (let i = 0; i < cardCount; i++) {
 
             currentPage.drawText(group[0], {
                 x: x + mmToPt(config.cardWidthMM) + mmToPt(config.paddingMM) + descFontStyle.widthOfTextAtSize(printedLine, config.descriptionSize),
-                y: y + maxDescHeight + mmToPt(config.paddingBottomMM) - (j + 1) * (descFontStyle.heightAtSize(config.descriptionSize) * 1.4) + 1.4,
+                y:
+                    y +
+                    maxDescHeight +
+                    mmToPt(config.paddingBottomMM) -
+                    (j + 1) * (descFontStyle.heightAtSize(config.descriptionSize) * 1.4) +
+                    1.4 -
+                    (maxDescHeight - 2.5 * categoryFont.heightAtSize(config.categorySize)) / 4,
                 size: config.descriptionSize,
                 font: descFontStyle,
                 maxWidth: maxDescWidth,
@@ -359,8 +367,33 @@ for (let i = 0; i < cardCount; i++) {
         });
     }
 
-    // center description vertically
     // print category on bottom
+    const category = json.categories[card.category.toString()];
+
+    currentPage.drawRectangle({
+        x: x + mmToPt(config.cardWidthMM + config.paddingMM),
+        y: y + mmToPt(config.paddingBottomMM),
+        width: mmToPt(config.cardWidthMM - 2 * config.paddingMM),
+        height: 2.5 * categoryFont.heightAtSize(config.categorySize),
+        color: rgb(hexToRgb(category.color)["r"], hexToRgb(category.color)["g"], hexToRgb(category.color)["b"]),
+    });
+
+    const r = parseInt(category.color.slice(1, 3), 16);
+    const g = parseInt(category.color.slice(3, 5), 16);
+    const b = parseInt(category.color.slice(5, 7), 16);
+    const isDark = isDarkColor(r, g, b);
+
+    // draw the category text
+    currentPage.drawText(category.name, {
+        x:
+            x +
+            mmToPt(config.cardWidthMM + config.paddingMM) +
+            (mmToPt(config.cardWidthMM - 2 * config.paddingMM) - categoryFont.widthOfTextAtSize(category.name, config.categorySize)) / 2,
+        y: y + mmToPt(config.paddingBottomMM) + 0.75 * categoryFont.heightAtSize(config.categorySize),
+        font: categoryFont,
+        size: config.categorySize,
+        color: isDark ? rgb(1, 1, 1) : rgb(0, 0, 0),
+    });
 }
 
 // serialize the PDFDocument to bytes (a Uint8Array)
