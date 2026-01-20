@@ -83,11 +83,11 @@ const headingSize = 20;
 const subheading = "https://github.com/thevalleyy/timeline";
 const subheadingSize = 10;
 const infoText = `* generated ${config.outputFile}
-* start time: ${new Date().toLocaleString()}
 * #cards per row: ${amountHorizontal}
 * #cards per column: ${amountVertical}
 * #total pages: ${totalPages}
-* #total cards: ${cardCount}`;
+* #total cards: ${cardCount}
+* start time: ${new Date().toLocaleString()}`;
 const infoFontSize = 15;
 
 page.drawText(heading, {
@@ -296,7 +296,7 @@ for (let i = 0; i < cardCount; i++) {
 
     const maxDescHeight =
         mmToPt(config.cardHeightMM - config.paddingTopMM - config.paddingBottomMM) -
-        yearFont.heightAtSize(config.yearSize) -
+        (card.year ? yearFont.heightAtSize(config.yearSize) : -yearFont.heightAtSize(config.yearSize)) -
         2 * descriptionFont.heightAtSize(config.descriptionSize);
     const maxDescWidth = mmToPt(config.cardWidthMM - 2 * config.paddingMM);
 
@@ -368,33 +368,45 @@ for (let i = 0; i < cardCount; i++) {
     }
 
     // print category on bottom
-    const category = json.categories[card.category.toString()];
+    const category = json.categories[card.category?.toString()];
+    if (category) {
+        currentPage.drawRectangle({
+            x: x + mmToPt(config.cardWidthMM + config.paddingMM),
+            y: y + mmToPt(config.paddingBottomMM),
+            width: mmToPt(config.cardWidthMM - 2 * config.paddingMM),
+            height: 2.5 * categoryFont.heightAtSize(config.categorySize),
+            color: rgb(hexToRgb(category.color)["r"], hexToRgb(category.color)["g"], hexToRgb(category.color)["b"]),
+        });
 
-    currentPage.drawRectangle({
-        x: x + mmToPt(config.cardWidthMM + config.paddingMM),
-        y: y + mmToPt(config.paddingBottomMM),
-        width: mmToPt(config.cardWidthMM - 2 * config.paddingMM),
-        height: 2.5 * categoryFont.heightAtSize(config.categorySize),
-        color: rgb(hexToRgb(category.color)["r"], hexToRgb(category.color)["g"], hexToRgb(category.color)["b"]),
-    });
+        const r = parseInt(category.color.slice(1, 3), 16);
+        const g = parseInt(category.color.slice(3, 5), 16);
+        const b = parseInt(category.color.slice(5, 7), 16);
+        const isDark = isDarkColor(r, g, b);
 
-    const r = parseInt(category.color.slice(1, 3), 16);
-    const g = parseInt(category.color.slice(3, 5), 16);
-    const b = parseInt(category.color.slice(5, 7), 16);
-    const isDark = isDarkColor(r, g, b);
-
-    // draw the category text
-    currentPage.drawText(category.name, {
-        x:
-            x +
-            mmToPt(config.cardWidthMM + config.paddingMM) +
-            (mmToPt(config.cardWidthMM - 2 * config.paddingMM) - categoryFont.widthOfTextAtSize(category.name, config.categorySize)) / 2,
-        y: y + mmToPt(config.paddingBottomMM) + 0.75 * categoryFont.heightAtSize(config.categorySize),
-        font: categoryFont,
-        size: config.categorySize,
-        color: isDark ? rgb(1, 1, 1) : rgb(0, 0, 0),
-    });
+        // draw the category text
+        currentPage.drawText(category.name, {
+            x:
+                x +
+                mmToPt(config.cardWidthMM + config.paddingMM) +
+                (mmToPt(config.cardWidthMM - 2 * config.paddingMM) - categoryFont.widthOfTextAtSize(category.name, config.categorySize)) / 2,
+            y: y + mmToPt(config.paddingBottomMM) + 0.75 * categoryFont.heightAtSize(config.categorySize),
+            font: categoryFont,
+            size: config.categorySize,
+            color: isDark ? rgb(1, 1, 1) : rgb(0, 0, 0),
+        });
+    }
 }
+
+// go to the first page and draw the end date
+const firstPage = pdfDoc.getPage(0);
+const endText = `*   end time: ${new Date().toLocaleString()}`;
+firstPage.drawText(endText, {
+    x: mmToPt(config.marginMM),
+    y: height - mmToPt(config.marginMM) - Courier.heightAtSize(headingSize) - Courier.heightAtSize(subheadingSize) - Courier.heightAtSize(infoFontSize) * 15,
+    size: infoFontSize,
+    font: Courier,
+    color: rgb(0, 0, 0),
+});
 
 // serialize the PDFDocument to bytes (a Uint8Array)
 const pdfBytes = await pdfDoc.save();

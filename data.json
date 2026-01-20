@@ -45,6 +45,13 @@
     },
     "data": [
         {
+            "event": "Anleitung",
+            "year": "",
+            "description": "Alle bekommen zwischen 5 und 10 Karten mit der Bildseite nach oben, je eine aufgedeckte Karte liegt vor euch. Ziel ist es, die Ereignisse chronologisch zu sortieren. Liegt ihr richtig, bleibt die Karte liegen. Solltet ihr falsch liegen, kommt sie weg und ihr zieht eine neue nach. Das Ziel ist es, als erstes alle Karten loszuwerden. **Viel Spaß!**",
+            "image": "astronaut.png",
+            "attribution": "NASA, Public domain, via Wikimedia Commons"
+        },
+        {
             "event": "Die Mondlandung",
             "year": "1969",
             "description": "Am **20. Juli 1969** setzte die Mondlandefähre Eagle mit Neil Armstrong und Buzz Aldrin auf dem Mond auf. Michael Collins verblieb im Raumschiff Columbia in der Mondumlaufbahn.",
@@ -87,7 +94,7 @@
         {
             "event": "Erster Mensch im All",
             "year": "1961",
-            "description": "Wostock 1 startete am **12. April 1961**. Der sowjetische Kosmonaut Juri Gagarin gelangte als erster Mensch über die internationale anerkannte Grenzhöhe von 100 Kilometern.",
+            "description": "Wostock 1 startete am **12. April 1961**. Der sowjetische Kosmonaut Juri Gagarin gelangte als erster Mensch über die international anerkannte Grenzhöhe von 100 Kilometern.",
             "image": "gagarin.jpg",
             "attribution": "Mil.ru, CC BY 4.0, via Wikimedia Commons",
             "category": "0"
@@ -112,15 +119,15 @@
             "event": "Erster Deutscher im All",
             "year": "1978",
             "description": "Über das Interkosmos- Programm der Sowjetunion flog der Ostdeutsche Sigmund Jähn am **26. August 1978** zur Raumstation Saljut 6. Der ausgebildete Jagdflieger verbrachte knapp acht Tage im All.",
-            "image": "jaehn.jpg",
+            "image": "jaehn.png",
             "attribution": "Bundesarchiv, Bild 183-T0709-148 / Peter Koard / CC-BY-SA, CC BY-SA 3.0 DE, via Wikimedia Commons",
             "category": "0"
         },
         {
             "event": "Erste erfolgreiche Wiederlandung einer Falcon-9",
             "year": "2015",
-            "description": "Am **22. Dezember 2015** gelang es dem US-amerikanischen Raumfahrtunternehmen SpaceX zum ersten Mal, eine Raketenstufe der Falcon-9-Trägerrakete wieder auf der Erde zu landen, ohne eine Explosion zu verursachen.",
-            "image": "falcon.jpg",
+            "description": "Am **22. Dezember 2015** gelang es dem US-amerikanischen Raumfahrtunternehmen SpaceX zum ersten Mal, eine Raketenstufe der Falcon-9-Trägerrakete wieder auf der Erde zu landen, ohne sie dabei zu zerstören.",
+            "image": "falcon.png",
             "attribution": "SpaceX Photos, CC0, via Wikimedia Commons",
             "category": "0"
         },
@@ -160,14 +167,14 @@
             "event": "Huygens landet auf Titan (Saturnmond)",
             "year": "2005",
             "description": "Cassini-Huygens war eine NASA-Mission zur Erforschung des Saturns und seiner Monde. Die gekoppelten Sonden starteten 1997. Im Dezember 2004 trennte sich Huygens von Cassini und am **14. Januar 2005** landete Huygens schlussendlich auf Titan.",
-            "image": "huygens.jpg",
+            "image": "huygens.png",
             "attribution": "ESA/NASA/JPL/University of Arizona; processed by Andrey Pivovarov, Public domain, via Wikimedia Commons",
             "category": "1"
         },
         {
             "event": "Pale Blue Dot wird aufgenommen",
             "year": "1990",
-            "description": "Pale Blue Dot (englisch für __blassblauer Punkt__) ist ein Foto der Erde, aufgenommen von Voyager 1 aus etwa 6 Milliarden Kilometern Entfernung (40,5 AE). Es entstand auf Anregung des Astronomen Carl Sagan am **14. Februar 1990**.",
+            "description": "Pale Blue Dot (englisch für __blassblauer Punkt__) ist ein Foto der Erde, aufgenommen von Voyager 1 aus etwa 6 Milliarden Kilometern Entfernung (40,5 AE). Es entstand auf Anregung des Astronoms Carl Sagan am **14. Februar 1990**.",
             "image": "pbd.png",
             "attribution": "Voyager 1, Public domain, via Wikimedia Commons",
             "category": "1"
@@ -175,7 +182,7 @@
         {
             "event": "Galileo erreicht Jupiter",
             "year": "1995",
-            "description": "Die NASA-Sonde Galileo wurde 1989 gestartet, um Jupiter und insbesondere seine Galileischen Monde zu erforschen. Galileo konnte am **7. Dezember 1995** in einen Jupiter-Orbit eintreten.",
+            "description": "Die NASA-Sonde Galileo wurde 1989 gestartet, um Jupiter und insbesondere seine vier Galileischen Monde zu erforschen. Galileo konnte am **7. Dezember 1995** in einen Jupiterorbit eintreten.",
             "image": "galileo.jpg",
             "attribution": "NASA, Public domain, via Wikimedia Commons",
             "category": "1"
@@ -183,13 +190,13 @@
         {
             "event": "Vega 1 setzt auf der Venus auf",
             "year": "1985",
-            "description": "Vega war eine sowjetische Mission zur Venus. Vega 1 startete am 15. Dezember 1984 und erreichte die Venusoberfläche am 11. Juni 1985, von der sie 56 Minuten lang Daten sendete.",
+            "description": "Vega war eine sowjetische Mission zur Erkundung der Venus. Vega 1 startete am 15. Dezember 1984 und erreichte die Venusoberfläche am 11. Juni 1985, von der sie 56 Minuten lang Daten sendete.",
             "image": "vega.jpg",
             "attribution": "Daderot, Public domain, via Wikimedia Commons",
             "category": "1"
         },
         {
-            "event": "JUICE erreicht den Jupiter-Orbit",
+            "event": "JUICE erreicht den Jupiterorbit",
             "year": "2031",
             "description": "JUICE (Jupiter Icy Moons Explorer) ist eine 2023 von der ESA gestartete Jupitersonde zur Erforschung der Galileischen Monde Europa, Ganymed und Kallisto. Den Jupiterorbit soll sie im **Juli 2031** erreichen.",
             "image": "juice.png",
@@ -211,6 +218,158 @@
             "image": "elt.jpg",
             "attribution": "ESO/G. Vecchia, CC BY 4.0, via Wikimedia Commons",
             "category": "2"
+        },
+        {
+            "event": "Erste wissenschaftliche Bilder des James Webb Space Telescope (JWST)",
+            "year": "2022",
+            "description": "Das JWST ist ein Infrarot-Weltraumteleskop von NASA, ESA und CSA (Kanada), gestartet Ende 2021. Erste wissenschaftliche Bilder folgten am **12. Juli 2022**, Testbilder wurden bereits im Februar empfangen.",
+            "image": "webb.jpg",
+            "attribution": "NASA, ESA, CSA, and STScI",
+            "category": "2"
+        },
+        {
+            "event": "Euclid wird gestartet",
+            "year": "2023",
+            "description": "Euclid ist ein Weltraumteleskop der ESA und dient der Erforschung dunkler Energie und dunkler Materie durch präzise Vermessung der Expansion des Weltraums. Gestartet wurde es am **1. Juli 2023** von SpaceX.",
+            "image": "euclid.png",
+            "attribution": "NASA Jet Propulsion Laboratory, Public domain, via Wikimedia Commons",
+            "category": "2"
+        },
+        {
+            "event": "Hubble wird gestartet",
+            "year": "1990",
+            "description": "Das Hubble- Weltraumteleskop der NASA kreist ca. 500 Kilometer über uns um die Erde. Gestartet wurde es am **24. April 1990** mit dem Space-Shuttle Discovery.",
+            "image": "hubble.jpg",
+            "attribution": "NASA, Public domain, via Wikimedia Commons",
+            "category": "2"
+        },
+        {
+            "event": "Das Spitzer- Weltraumteleskop wird gestartet",
+            "year": "2003",
+            "description": "Das Spitzer- Weltraumteleskop ist ein Infrarotteleskop der NASA. Von seinem Start am **25. August 2003** bis zur Abschaltung 2020 lieferte es u.a. Erkenntnisse zu aktiven Galaxiekernen, also der Bereich um supermassive schwarze Löcher in Galaxienzentren.",
+            "image": "spitzer.jpg",
+            "attribution": "NASA/JPL-Caltech, Public domain, via Wikimedia Commons",
+            "category": "2"
+        },
+        {
+            "event": "Erstes Foto eines schwarzen Lochs",
+            "year": "2019",
+            "description": "Am **10. April 2019** wurden zum ersten Mal Bilder eines schwarzen Lochs (M87*) veröffentlicht – vom Event Horizon Telescope, einem weltweiten Verbund an Radioteleskopen.",
+            "image": "eht.jpg",
+            "attribution": "EHT Collaboration, CC BY 4.0, via Wikimedia Commons",
+            "category": "2"
+        },
+        {
+            "event": "William-E.- Gordon-Teleskop (Arecibo/Puerto Rico) stürzt ein",
+            "year": "2020",
+            "description": "Am **1. Dezember 2020** rissen nach über 50 Jahren korrodierte Stahlseile, sodass das Teleskop des Arecibo-Observatoriums und seine 900 Tonnen schwere Plattform 137 Meter in die Tiefe auf den Reflektor stürzten.",
+            "image": "arecibo.jpg",
+            "attribution": "Juan.Alcaide231, CC BY-SA 4.0, via Wikimedia Commons",
+            "category": "2"
+        },
+        {
+            "event": "Der Bau von FAST wird vollendet",
+            "year": "2016",
+            "description": "FAST ist ein Radioteleskop im Südwesten Chinas mit einem Hauptspiegel- durchmesser von 500 Metern, was es zum derzeit größten Radioteleskop macht (1/2026). Bauzeit: März 2011 - **September 2016**.",
+            "image": "fast.jpg",
+            "attribution": "SCJiang, CC BY-SA 4.0, via Wikimedia Commons",
+            "category": "2"
+        },
+        {
+            "event": "Erster Einsatz von SOFIA",
+            "year": "2010",
+            "description": "SOFIA war ein fliegendes Infrarotteleskop in einer umgebauten Boeing 747-SP der NASA und des Deutschen Zentrum für Luft- und Raumfahrt (DLR). Das erste Mal wurde SOFIA am **26. Mai 2010** verwendet. 2022 wurde das Projekt aus finanziellen Gründen eingestellt.",
+            "image": "sofia.jpg",
+            "attribution": "NASA photo / Jim Ross, Public domain, via Wikimedia Commons",
+            "category": "2"
+        },
+        {
+            "event": "Spatenstich der Sternwarte Schweinfurt",
+            "year": "1982",
+            "description": "»Am **21.06.1982** gab Oberbürgermeister Petzold mit dem ersten Spatenstich den Startschuss für den Bau des neuen Schultrakts und der Sternwarte.« (sternwarte- schweinfurt.de)",
+            "image": "sternwarte.jpg",
+            "attribution": "",
+            "category": "2"
+        },
+        {
+            "event": "Formulierung der Keplerschen Gesetze",
+            "year": "~1620",
+            "description": "Die drei Keplerschen Gesetze sind fundamentale Aussagen über den Umlauf der Planeten um die Sonne. Der Astronom und Mathematiker Johannes Kepler formulierte sie Anfang des **17. Jahrhunderts**.",
+            "image": "kepler.jpg",
+            "attribution": "Reproduction photographique Claude TRUONG-NGOC, Public domain, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Entdeckung von Uranus",
+            "year": "1781",
+            "description": "Uranus (altgriechisch für __Himmel__) wurde am **13. März 1781** von Wilhelm Herschel entdeckt und ist nach dem griechischen Himmelsgott Uranos benannt.",
+            "image": "uranus.png",
+            "attribution": "Ardenau4, CC0, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Entdeckung von Neptun",
+            "year": "1846",
+            "description": "Neptun wurde **1846** aufgrund von Berechnungen des Mathematikers Urbain Le Verrier zu Bahnstörungen des Uranus durch den Astronom Johann Gottfried Galle entdeckt. Benannt ist er nach dem römischen Meeresgott Neptun.",
+            "image": "neptun.png",
+            "attribution": "NASA / Voyager 2 / User:Ardenau4, CC0, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Entdeckung von Pluto",
+            "year": "1930",
+            "description": "Pluto wurde am **18. Februar 1930** von dem Astronom Clyde W. Tombaugh am Lowell Observatory entdeckt. Die 11-jährige Venetia Burney schlug daraufhin den Namen »Pluto« vor.",
+            "image": "pluto.jpg",
+            "attribution": "NASA / Johns Hopkins University Applied Physics Laboratory / Southwest Research Institute, Public domain, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Aberkennung des Planetenstatus von Pluto",
+            "year": "2006",
+            "description": "Von seiner Entdeckung bis zum **24. August 2006** galt Pluto als neunter Planet. Seit der Entdeckung weiterer ähnlicher Kuipergürtel-Objekte wird er von der Internationalen Astronomischen Union als Zwergplanet (134340 Pluto) eingestuft.",
+            "image": "iau.jpg",
+            "attribution": "Astronomical Institute, Academy of Sciences of the Czech Republic, CC BY-SA 2.5, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Isaac Newton entdeckt das Gesetz der universellen Gravitation",
+            "year": "1687",
+            "description": "Isaac Newton beschrieb in seinen __Principia__ **1687** als Erster die Gravitation mithilfe einer mathematischen Formel, womit er die Grundsteine für die klassische Mechanik legte.",
+            "image": "newton.jpg",
+            "attribution": "Godfrey Kneller, Public domain, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Aristarchos vertritt als einer der Ersten das heliozentrische Weltbild",
+            "year": "280 v.Chr.",
+            "description": "Aristarchos von Samos war ein griechischer Astronom und Mathematiker, der früh das heliozentrische Weltbild vertrat. Daher gilt er auch als der »griechische Kopernikus«.",
+            "image": "aristarchos.png",
+            "attribution": "Dr. Manuel, Public domain, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Aristoteles erkennt die Kugelform der Erde",
+            "year": "350 v.Chr.",
+            "description": "Aristoteles argumentierte in __Über den Himmel__ für die Kugelform der Erde anhand der nur in bestimmten Breiten sichtbaren Sterne, was die antike Akzeptanz dieses Erdbilds förderte.",
+            "image": "aristoteles.png",
+            "attribution": "After Lysippos, Public domain, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Albert Einstein stellt die allgemeine Relativitätstheorie vor",
+            "year": "1915",
+            "description": "Die allgemeine Relativitätstheorie beschreibt Gravitation als Eigenschaft gekrümmter Raumzeit. Albert Einstein entwickelte ihre Grundlagen und stellte sie am **25. November 1915** vor.",
+            "image": "einstein.jpg",
+            "attribution": "Ferdinand Schmutzer, Public domain, via Wikimedia Commons",
+            "category": "3"
+        },
+        {
+            "event": "Georges Lemaître entdeckt die Expansion des Universums",
+            "year": "1927",
+            "description": "**1927** bemerkte Georges Lemaître, dass die Grundgleichungen der Relativitätstheorie ein dynamisches Universum ergeben und schloss aus der Galaxienflucht, dass das Universum expandiert.",
+            "image": "lemaitre.jpg",
+            "attribution": "Archives Louvain, Public domain, via Wikimedia Commons",
+            "category": "3"
         }
     ]
 }
