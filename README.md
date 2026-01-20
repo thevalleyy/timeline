@@ -45,7 +45,7 @@ I think everything here is self-explanatory, except the image. You have an image
 
 All these card-objects are expected to be put into an array and specified at the `data` key in `data.json`.
 
-I have provided a minimal working example at `data.json`. A complete set of 40 cards in German language can be found at `data_.json`.
+I have provided a minimal working example at `data.json`. A complete set of 40 cards in German language can be found at `data_.json`. I've also left `timeline_.pdf`, so you can directly go on print your German cards 😇
 
 ## Generating the pdf
 
